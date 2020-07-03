@@ -1,0 +1,7 @@
+# Data files
+*.fq
+*.fq.gz
+*.fq.xz
+
+# Project files
+config

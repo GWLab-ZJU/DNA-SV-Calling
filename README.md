@@ -1,6 +1,6 @@
-# DNA Mutation Calling Pipeline
+# DNA SV Calling Pipeline
 
-This is the pipeline for DNA mutation calling. All codes are stored here. 
+This is the pipeline for DNA SV calling. All codes are stored here. 
 
 If you get any question about the pipeline, you can directly contact Edison Jianning KANG (e-mail address: <jianning.18@intl.zju.edu.cn>).
 

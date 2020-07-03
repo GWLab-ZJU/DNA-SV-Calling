@@ -1,0 +1,7 @@
+*.bai
+*.bam
+*.sam
+*.cram
+*_bqsr
+*_dupmark_metrics.txt
+*_intervals.list
