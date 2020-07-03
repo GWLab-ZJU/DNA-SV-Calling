@@ -1,0 +1,79 @@
+# Rubbish produced by GNU Emacs and VIM
+*~
+\#*\#
+[._]*.s[a-v][a-z]
+!*.svg
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Rubbish produced by Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Rubbish produced by GNU/Linux
+.Trash-*
+
+# Rubbish produced by Visual Studio Code
+.vscode/*
+*.code-workspace
+
+# Archives
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.gzip
+*.tgz
+*.tbz
+*.tlz
+*.bzip
+*.bzip2
+*.bz2
+*.xz
+*.lzma
+*.cab
+*.xar
+*.iso
+*.tar
+*.tar.*
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+*.msi
+*.msm
+*.msp
+*.txz
+
+# Backups
+*.bak
+*tmp
+*attemp*
+*invalid*
+*INVALID*
+
+# Project
+*.conf
+*.log
+.idea
+*.vcf
+*.out
+*.idx
+*.tbi
+*.RHistory
+*.RData
+*.filteringStats.tsv
+*.vcf.stats
+core.*
+*.unmap

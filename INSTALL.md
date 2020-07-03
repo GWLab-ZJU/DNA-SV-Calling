@@ -1,0 +1,3 @@
+# INSTALL
+
+See `Readme.md`.
