@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-rm *.log *.fq* *.fastq*
+set -ue
+cd "$(readlink -f "$(dirname "${0}")")"
+rm -f *.log *.fq* *.fastq*
