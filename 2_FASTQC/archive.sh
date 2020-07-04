@@ -7,7 +7,7 @@ for ext in ".gz";do
         for fn in *"${ext}";do
             echo ${fn}
             fxz=$(echo ${fn}|sed "s;$(echo ${ext});.xz;")
-            echo "cat ${fn} | gzip -dc | xz -9 > ${fxz} && rm ${fn}"|"${bsub}"
+            echo "cat '${fn}' | gzip -dc | xz -9 > '${fxz}' && rm '${fn}'"|"${bsub}"
         done
     fi
 done
