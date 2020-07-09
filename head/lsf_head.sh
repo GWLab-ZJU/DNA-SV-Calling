@@ -2,6 +2,7 @@
 # BSUB -R "span[ptile=1]"
 # BSUB -o
 # BSUB -n 1
+set -ue
 WDIR=
 cd "${WDIR}"
 line=
@@ -21,3 +22,4 @@ ANNOVAR_DB="$HOME/References/Annovar/humandb"
 bwaref="${HOME}/References/GATK_hg38/hg38_bwa_ref/hg38.fa"
 lcbed="${HOME}/References/DIGIT/lowComplexity.bed"
 LUMPYscripts="${HOME}"/bin/bio.d/lumpy-sv.git/scripts
+DELLY_EXCL="${HOME}"/bin/bio.d/delly.git/excludeTemplates/
