@@ -19,3 +19,5 @@ hapmap="${HG}/hapmap_3.3.hg38.vcf.gz"
 k_indel=" -known ${onekg_snp} -known ${mills} -L ${HG}/wgs_calling_regions.hg38.interval_list "
 ANNOVAR_DB="$HOME/References/Annovar/humandb"
 bwaref="${HOME}/References/GATK_hg38/hg38_bwa_ref/hg38.fa"
+lcbed="${HOME}/References/DIGIT/lowComplexity.bed"
+LUMPYscripts="${HOME}"/bin/bio.d/lumpy-sv.git/scripts
