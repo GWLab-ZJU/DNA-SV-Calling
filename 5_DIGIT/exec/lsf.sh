@@ -1,6 +1,10 @@
 LIBDO_LOG_MODE=4
-tumour="../4_BWA_GATK/${line}_DIGIT_FINAL.sam"
-if  [ -e "${tumour}" ];then
+tumour="${line}"_DIGIT_FINAL.sam
+obj="../4_BWA_GATK/${line}_dupmark.bam"
+if  [ -f "${obj}" ];then
+    if ! [ -f "${tumour}" ];then
+        DO samtools sort -n "${obj}" -o "${tumour}"
+    fi
     rm -fr ${line}
     mkdir -p ${line}
     cd ${line}

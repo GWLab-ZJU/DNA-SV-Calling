@@ -16,18 +16,4 @@ if [ -f "${fq1}" ] && [ -f "${fq2}" ];then
     -M "${id}"_dupmark_metrics.txt
 
     DO samtools index "${id}"_dupmark.bam
-
-    ln -s "${id}"_dupmark.bam.bai "${id}"_LUMPY_MAIN.bam.bai
-    
-    ln -s "${id}"_dupmark.bam "${id}"_LUMPY_MAIN.bam
-
-    LIBDO_LOG_MODE=2
-    
-    DO samtools view -b -F 1294 "${id}"_dupmark.bam \| samtools sort -o "${id}"_LUMPY_discordants.bam -
-
-    DO samtools view -h "${id}"_dupmark.bam \| "${LUMPYscripts}"/extractSplitReads_BwaMem -i stdin \| samtools view -Sh -\|samtools sort -o "${id}"_LUMPY_splitters.bam -
-    
-    DO samtools sort -n "${id}"_dupmark.bam -o "${id}"_nmsort.bam
-    
-    DO samtools view "${id}"_nmsort.bam -o "${id}"_DIGIT_FINAL.sam
 fi
