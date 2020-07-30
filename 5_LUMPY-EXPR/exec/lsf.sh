@@ -9,5 +9,5 @@ if  [ -f "${tdm}" ] ;then
     fi
     LIBDO_LOG_MODE=4
     DO lumpyexpress -B "${tdm}" -S "${tds}" -D "${tdc}" -o "${line}"_raw.vcf
-    DO svtyper -i "${line}"_raw.vcf -B "${tdm}" -o VCF/"${line}".vcf
+    DO svtyper -i "${line}"_raw.vcf -B "${tdm}" -o VCF/"${line}"_LUMPY-EXPR.vcf
 fi
