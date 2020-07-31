@@ -22,7 +22,7 @@ class samstat:
         self.QNAME = inlines[0]
         self.FLAG = int(inlines[1])
         self.FLAGS = powersof2(self.FLAG)
-        self.ISSEC = 256 in self.FLAGS or 1024 in self.FLAGS or 2018 in self.FLAGS
+        self.ISSEC = 256 in self.FLAGS or 1024 in self.FLAGS or 2018 in self.FLAGS or not 2 in self.FLAGS
         self.ISUNMAP = 4 in self.FLAGS
         self.ISP1 = 64 in self.FLAGS
         self.ISP2 = 128 in self.FLAGS
