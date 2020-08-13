@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ue
 cd "$(readlink -f "$(dirname "${0}")")"
-../head/do_head.sh
+. ../head/do_head.sh
 cat ../all.conf|cut -f 1 -d " "|grep -v '^#'|while read line;do
     for fn in "${line}"_1 "${line}"_2;do
         echo ${fn}

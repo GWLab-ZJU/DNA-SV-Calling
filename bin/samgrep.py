@@ -22,16 +22,16 @@ class samstat:
         self.QNAME = inlines[0]
         self.FLAG = int(inlines[1])
         self.FLAGS = powersof2(self.FLAG)
-        self.ISSEC = 256 in self.FLAGS or 1024 in self.FLAGS or 2018 in self.FLAGS or not 2 in self.FLAGS
-        self.ISUNMAP = 4 in self.FLAGS
+        self.ISSEC = 256 in self.FLAGS or 1024 in self.FLAGS or 2018 in self.FLAGS or 4 in self.FLAGS or not 2 in self.FLAGS
         self.ISP1 = 64 in self.FLAGS
         self.ISP2 = 128 in self.FLAGS
+        self.chr = inlines[2]
 
     def __str__(self):
         return self.Mainstr
 
     def __repr__(self):
-        return self.QNAME + ":" + str(self.FLAG) + '(' + ','.join([str(self.ISP1), str(self.ISP2), str(self.ISSEC), str(self.ISUNMAP)]) + ')'
+        return self.QNAME + ":" + str(self.FLAG) + '(' + ','.join([str(self.ISP1), str(self.ISP2), str(self.ISSEC)]) + ')'
 
 
 class sampair:
@@ -41,12 +41,11 @@ class sampair:
         self.P2 = None
         self.P2_sec = []
         self.QNAME = ''
+        self.diffchr = False
 
     def add(self, P: samstat) -> int:
         ret_val = 1
-        if self.P1 != None and self.P2 != None:
-            pass
-        elif self.QNAME == "":
+        if self.QNAME == "":
             self.QNAME = P.QNAME
             self.__add(P)
             ret_val = 0
@@ -60,23 +59,23 @@ class sampair:
                 self.P2 = self.P2_sec[0]
             if self.P1 == None and self.P2 == None:
                 ret_val = 2
+            else:
+                self.diffchr = self.P1.chr != self.P2.chr
         else:
             self.__add(P)
             ret_val = 0
-        fdlogh.write(str(ret_val) + "=" + self.__repr__() + "+" + P.__repr__()+'\n')
+        fdlogh.write(str(ret_val) + "=" + self.__repr__() + "+" + P.__repr__()+","+str(self.diffchr)+'\n')
         return ret_val
 
 
     def __add(self, P: samstat):
-        if P.ISUNMAP:
-            return
         if P.ISP1:
-            if P.ISSEC:
+            if P.ISSEC or self.P1 != None:
                 self.P1_sec.append(P)
             else:
                 self.P1 = P
         elif P.ISP2:
-            if P.ISSEC:
+            if P.ISSEC or self.P2 != None:
                 self.P2_sec.append(P)
             else:
                 self.P2 = P
@@ -106,36 +105,43 @@ class sampair:
         return self.QNAME + '(' + ','.join([str(self.P1 == None), str(self.P2 == None), str(self.P1_sec == []), str(self.P2_sec == [])]) + ")+"
 
 
-if len(sys.argv) >= 2 and os.path.isfile(sys.argv[0]):
-    finh = open(sys.argv[1])
-    fouth = open(sys.argv[1] + ".converted.sam", "w")
-    flogh = open(sys.argv[1] + ".converted.log", "w")
-    fdlogh = open(sys.argv[1] + ".converted.debug.log", "w")
-    line_num = 0
-    flogh.write('line\tQNAME\tFLAG\tWHICHPAIRED\tISSEC\tWIRTE\n')
-    fdlogh.write("AddReturnValue=self.QNAME(P1,P2,P1_sec,P2_sec)+P.QNAME:P.FLAG(P.ISP1,P.ISP2,P.ISSEC,P.ISUNMAP)\n")
-    tmpsp = sampair()
-    while 1:
-        inline = finh.readline()
-        if inline == '':
-            break
-        elif inline.startswith('@'):
-            continue
-        line_num += 1
-        tmpstat = samstat(inline.strip())
-        ret_val = tmpsp.add(tmpstat)
-        if ret_val == 1:
-            flogh.write(tmpsp.logstr())
-            fouth.write(tmpsp.outstr())
-            tmpsp = sampair()
-            tmpsp.add(tmpstat)
-        elif ret_val == 2:
-            flogh.write(tmpsp.logstr())
-            tmpsp = sampair()
-            tmpsp.add(tmpstat)
-    finh.close()
-    fdlogh.close()
-    flogh.write(tmpsp.logstr())
-    fouth.write(tmpsp.outstr())
-    flogh.close()
-    fouth.close()
+if len(sys.argv) < 2 or not os.path.isfile(sys.argv[0]):
+    exit(1)
+finh = open(sys.argv[1])
+fouth = open(sys.argv[1] + ".converted.sam", "w")
+fout_chrdiffh = open(sys.argv[1] + ".converted_chrdiff.sam", "w")
+flogh = open(sys.argv[1] + ".converted.log", "w")
+fdlogh = open(sys.argv[1] + ".converted.debug.log", "w")
+line_num = 0
+flogh.write('line\tQNAME\tFLAG\tWHICHPAIRED\tISSEC\tWIRTE\n')
+fdlogh.write("AddReturnValue=self.QNAME(P1,P2,P1_sec,P2_sec,isdiffchr)+P.QNAME:P.FLAG(P.ISP1,P.ISP2),self.ISSEC\n")
+tmpsp = sampair()
+while 1:
+    inline = finh.readline()
+    if inline == '':
+        break
+    elif inline.startswith('@'):
+        continue
+    line_num += 1
+    tmpstat = samstat(inline.strip())
+    ret_val = tmpsp.add(tmpstat)
+    if ret_val == 1:
+        flogh.write(tmpsp.logstr())
+        fouth.write(tmpsp.outstr())
+        if tmpsp.diffchr:
+            fout_chrdiffh.write(tmpsp.outstr())
+        tmpsp = sampair()
+        tmpsp.add(tmpstat)
+    elif ret_val == 2:
+        flogh.write(tmpsp.logstr())
+        tmpsp = sampair()
+        tmpsp.add(tmpstat)
+finh.close()
+fdlogh.close()
+flogh.write(tmpsp.logstr())
+fouth.write(tmpsp.outstr())
+if tmpsp.diffchr:
+    fout_chrdiffh.write(tmpsp.outstr())
+flogh.close()
+fouth.close()
+fout_chrdiffh.close()
