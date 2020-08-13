@@ -1,14 +1,22 @@
-# Rubbish produced by GNU Emacs and VIM
+# IDE
+## GNU Emacs
 *~
 \#*\#
+## VIM
 [._]*.s[a-v][a-z]
 !*.svg
 [._]*.sw[a-p]
 [._]s[a-rt-v][a-z]
 [._]ss[a-gi-z]
 [._]sw[a-p]
+## IDEA platforms
+.idea
+## Visual Studio Code
+.vscode/*
+*.code-workspace
 
-# Rubbish produced by Windows
+# OS
+## Microsoft Windows
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
@@ -17,13 +25,8 @@ ehthumbs_vista.db
 [Dd]esktop.ini
 $RECYCLE.BIN/
 *.lnk
-
-# Rubbish produced by GNU/Linux
+## GNU/Linux
 .Trash-*
-
-# Rubbish produced by Visual Studio Code
-.vscode/*
-*.code-workspace
 
 # Archives
 *.7z
@@ -63,17 +66,29 @@ $RECYCLE.BIN/
 *invalid*
 *INVALID*
 
+# System error
+core.*
+
 # Project
+## Read files
+*.fq
+*.fastq
+*.fq.[gx]z
+*.fastq.gz
+*.partial
+*.[sb]am
+*.cram
+## igure and log
 *.conf
 *.log
-.idea
-*.vcf
-*.out
+## Index files
 *.idx
 *.tbi
-*.RHistory
-*.RData
-*.filteringStats.tsv
-*.vcf.stats
-core.*
-*.unmap
+*.csi
+## VCF, etc.
+*.[bv]cf
+*.loc
+*.dloc
+## R files
+.R[hH]istory
+.R[dD]ata

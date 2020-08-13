@@ -1,4 +1,3 @@
-LIBDO_LOG_MODE=4
 adap=""
 if [ -f ../adapters.conf ]; then
     adap=" -a ../adapters.conf "

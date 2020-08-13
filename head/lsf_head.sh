@@ -9,7 +9,7 @@ line=
 thisdate="$(date +%Y-%m-%d_%H-%M)"
 . "${HOME}"/lib/libdo
 LIBDO_LOG="${WDIR}/${line}_${thisdate}.log"
-
+LIBDO_LOG_MODE=4
 HG="${HOME}/References/GATK/hg38"
 ref="${HG}/Homo_sapiens_assembly38.fasta"
 onekg_snp="${HG}/1000G_phase1.snps.high_confidence.hg38.vcf.gz"
