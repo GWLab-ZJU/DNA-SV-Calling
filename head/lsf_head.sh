@@ -15,5 +15,5 @@ ref="${HG}/hg38.fa"
 ANNOVAR_DB="$HOME/References/Annovar/humandb"
 bwaref="${HOME}/References/hg38/hg38_bwa_ref/hg38.fa"
 lcbed="${HOME}/References/DIGIT/lowComplexity.bed"
-LUMPYscripts="${HOME}"/bin/bio.d/lumpy-sv.git/scripts
+LUMPYscripts="${HOME}"/bin/bio.d/lumpy-sv/scripts
 DELLY_EXCL="${HOME}"/bin/bio.d/delly.git/excludeTemplates/
