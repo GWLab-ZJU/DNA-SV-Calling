@@ -17,3 +17,4 @@ bwaref="${HOME}/References/hg38/hg38_bwa_ref/hg38.fa"
 lcbed="${HOME}/References/DIGIT/lowComplexity.bed"
 LUMPYscripts="${HOME}"/bin/bio.d/lumpy-sv/scripts
 DELLY_EXCL="${HOME}"/bin/bio.d/delly.git/excludeTemplates/
+GRIDSS_JAR=${HOME}/bin/bio.d/JAR/gridss-2.9.4/gridss-2.9.4-gridss-jar-with-dependencies.jar
