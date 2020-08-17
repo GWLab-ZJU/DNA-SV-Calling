@@ -2,8 +2,8 @@ tumour="${line}"_DIGIT_FINAL.sam
 obj="../4_BWA_GATK/${line}_dupmark.bam"
 [ -f "${obj}" ]
 if ! [ -f "${tumour}" ];then
-	DO samtools sort -n "${line}"_nmsorted.sam -o "${tumour}"
-	DO samtools view -F 256 -F 2048 "${line}"_nmsorted.sam -o "${obj}"
+	DO samtools sort -n "${obj}" -o "${line}"_nmsorted.sam
+	DO samtools view -F 256 -F 2048 "${line}"_nmsorted.sam -o "${tumour}"
 fi
 
 DO digit analyse -i "${PWD}/${tumour}" -o "${PWD}/${line}" -s 2.33 -a false -lc "${lcbed}" -r "${HG}"/Homo_sapiens_assembly38.idx.ChrLen.txt -q 0
