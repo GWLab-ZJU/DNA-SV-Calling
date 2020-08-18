@@ -9,10 +9,6 @@ LIBDO_LOG_MODE=4
 
 DO samtools index "${id}".bam
 
-DO gatk MarkDuplicates \
--I "${id}".bam \
--O "${id}"_dupmark.bam \
---REMOVE_SEQUENCING_DUPLICATES true \
--M "${id}"_dupmark_metrics.txt
+DO bam dedup --in "${id}".bam --out "${id}"_dupmark.bam --rmDups --verbose
 
 DO samtools index "${id}"_dupmark.bam
