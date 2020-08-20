@@ -20,3 +20,4 @@ BIOD="${HOME}/bin/bio.d"
 LUMPYscripts="${BIOD}"/lumpy-sv/scripts
 DELLY_EXCL="${BIOD}"/delly.git/excludeTemplates/
 GRIDSS_JAR="${BIOD}"/JAR/gridss-2.9.4/gridss-2.9.4-gridss-jar-with-dependencies.jar
+MANTA_LIBEXEC="${BIOD}"/manta-1.6.0.centos6_x86_64/libexec
