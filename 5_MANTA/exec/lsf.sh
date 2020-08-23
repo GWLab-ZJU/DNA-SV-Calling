@@ -1,15 +1,12 @@
 tumour="../4_BWA_GATK/${line}_dupmark.bam"
 [ -f "${tumour}" ]
-DO configManta.py --exome \
---bam="${tumour}" \
---referenceFasta="${ref}" \
---runDir="${line}"_manta
+DO configManta.py --exome --bam="${tumour}" --referenceFasta="${ref}" --runDir="${line}"_manta
 
 DO "${line}"_manta/runWorkflow.py -m local
 
 cd "${line}"_manta/results/variants
 
-gunzip *.vcf.gz
+gzip -df *.vcf.gz
 
 grep -E '^##' diploidSV.vcf | grep -vE '^((##FILTER)|(##INFO)|(##FORMAT)|(##ALT))' > merged.vcf
 echo '##FILTER=<ID=candidateSV,Description="Variant output to candidateSV call set">' >> merged.vcf
