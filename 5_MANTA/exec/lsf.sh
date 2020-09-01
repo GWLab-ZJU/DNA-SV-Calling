@@ -15,7 +15,7 @@ grep -hE '^((##FILTER)|(##INFO)|(##FORMAT)|(##ALT))' diploidSV.vcf candidateSV.v
 grep -vE '^##' diploidSV.vcf >> merged.vcf
 grep -vE '^#' candidateSV.vcf | awk 'BEGIN { FS="\t"; OFS="\t" } { $7="candidateSV" ; $10="" ; print }' >> merged.vcf
 grep -vE '^#' candidateSmallIndels.vcf | awk 'BEGIN { FS="\t"; OFS="\t" } { $7="candidateSmallIndels" ; $10="" ; print }' >> merged.vcf
-"${MANTA_LIBEXEC}"/convertInversion.py $(which samtools) "${ref}" merged.vcf > ../../../VCF/"${line}"_MANTA.vcf
+"${MANTA_LIBEXEC}"/convertInversion.py $(which samtools) "${ref}" merged.vcf > ../../../VCF/"${line}"_manta.vcf
 
 cd ../../../
 tar -f - -cv "${line}"_manta | xz -T0 -9 > "${line}"_manta.txz
